@@ -14,22 +14,12 @@ When you start an attack with protection **off**, legitimate users get locked ou
 
 ## 1. Get the project
 
-Option A: clone with Git
+ clone with Git
 
 ```
 git clone https://github.com/usratjahan/DOS-Attack-Detection-prevention.git
 cd DOS-Attack-Detection-prevention
 ```
-
-Option B: download a ZIP. On the GitHub page click **Code**, then **Download ZIP**, extract it, and open a terminal inside the extracted folder.
-
-Check that you are in the right folder. Run `ls` (or `dir` in PowerShell). You must see:
-
-```
-README.md   dosguard   output   tests
-```
-
-If you do not see these three items, you are one folder too high or too low. Run `cd` into the folder that contains them.
 
 ## 2. Run the real-time dashboard
 
