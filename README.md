@@ -12,14 +12,6 @@ When you start an attack with protection **off**, legitimate users get locked ou
 
 * Real-time dashboard (frontend and backend): `127.0.0.1:8000`
 
-## Requirements
-
-* Python 3.8 or newer ([python.org/downloads](https://www.python.org/downloads/))
-* Git (optional, only needed to clone the project)
-* A web browser
-
-There is nothing else to install. The project uses only the Python standard library.
-
 ## 1. Get the project
 
 Option A: clone with Git
