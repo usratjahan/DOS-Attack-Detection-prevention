@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DosGuard Live</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    DosGuard <span>Live</span></div>
+  <div id="status" class="pill wait" role="status" aria-live="polite">…</div>
+  <div class="hdr-right">
+    <span id="clock" class="mono">t = 0 s</span>
+    <span id="conn" class="dot off" title="connection"></span>
+    <button id="lang" class="ghost" type="button">বাংলা</button>
+  </div>
+</header>
+
+<main>
+  <section class="controls">
+    <div class="panel">
+      <h3 data-i="mode">Protection</h3>
+      <div class="seg" id="modes" role="group">
+        <button type="button" data-mode="off" data-i="m_off">No protection</button>
+        <button type="button" data-mode="monitor" data-i="m_monitor">Detect only</button>
+        <button type="button" data-mode="protect" data-i="m_protect">DosGuard protect</button>
+      </div>
+      <p class="hint" id="modeHint"></p>
+    </div>
+    <div class="panel">
+      <h3 data-i="attacks">Launch an attack <small data-i="sim_only">(simulation only)</small></h3>
+      <div class="attacks" id="attacks">
+        <button type="button" class="atk" data-atk="syn_flood"><b data-i="a_syn">SYN flood</b><small data-i="a_syn_d">fake connection requests</small></button>
+        <button type="button" class="atk" data-atk="http_flood"><b data-i="a_http">HTTP flood</b><small data-i="a_http_d">15 bots, 1500 req/s</small></button>
+        <button type="button" class="atk" data-atk="slowloris"><b data-i="a_slow">Slowloris</b><small data-i="a_slow_d">300 half-open connections</small></button>
+        <button type="button" class="atk" data-atk="http_distributed"><b data-i="a_dist">Distributed flood</b><small data-i="a_dist_d">200 polite-looking bots</small></button>
+      </div>
+    </div>
+    <div class="panel narrow">
+      <h3 data-i="speed">Speed</h3>
+      <div class="seg" id="speeds" role="group">
+        <button type="button" data-speed="1">1×</button>
+        <button type="button" data-speed="2">2×</button>
+        <button type="button" data-speed="4">4×</button>
+      </div>
+      <button id="reset" type="button" class="ghost wide" data-i="reset">Reset simulation</button>
+    </div>
+  </section>
+
+  <section class="panel explain" id="explain" aria-live="polite"></section>
+
+  <section class="kpis">
+    <div class="kpi"><span class="lbl" data-i="k_avail">Real users served</span><span class="val" id="kAvail">–</span><span class="sub" data-i="k_avail_s">last 4 seconds</span></div>
+    <div class="kpi"><span class="lbl" data-i="k_lat">Response time</span><span class="val" id="kLat">–</span><span class="sub" data-i="k_lat_s">average, successful requests</span></div>
+    <div class="kpi"><span class="lbl" data-i="k_req">Incoming requests</span><span class="val" id="kReq">–</span><span class="sub" id="kReqS"></span></div>
+    <div class="kpi"><span class="lbl" data-i="k_syn">Incoming connection attempts</span><span class="val" id="kSyn">–</span><span class="sub" data-i="k_syn_s">SYN packets per second</span></div>
+  </section>
+
+  <section class="charts">
+    <div class="panel"><h3 data-i="c_avail">Real users served (%)</h3><canvas id="cAvail" height="190"></canvas></div>
+    <div class="panel"><h3 data-i="c_load">Incoming traffic (per second)</h3><canvas id="cLoad" height="190"></canvas>
+      <div class="legend"><span><i class="l-req"></i><span data-i="lg_req">requests/s</span></span><span><i class="l-syn"></i><span data-i="lg_syn">SYN/s</span></span><span><i class="l-cap"></i><span data-i="lg_cap">server capacity (400 req/s)</span></span></div></div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel"><h3 data-i="res">Server resources</h3><div id="bars"></div></div>
+    <div class="panel"><h3 data-i="def">Active defences</h3><div id="chips" class="chips"></div>
+      <h3 class="mt" data-i="drops">Dropped so far</h3><div id="drops" class="drops mono"></div></div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel"><h3 data-i="feed">Event feed</h3><ul id="feed" class="feed"></ul></div>
+    <div class="panel"><h3><span data-i="blocked">Blocked IPs</span> <small id="blockedN"></small></h3><table id="blocked"><tbody></tbody></table></div>
+  </section>
+
+  <footer data-i="foot">All attacks run inside an in-memory simulation. No real network traffic is sent.</footer>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

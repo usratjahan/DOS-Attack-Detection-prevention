@@ -1,0 +1,13 @@
+attack,mode,runs,avail_before_pct,avail_during_pct,avail_steady_pct,avail_ordinary_steady_pct,avail_heavy_steady_pct,mean_latency_ms,detected_pct,mean_alert_delay_s,mean_mitigation_delay_s,legit_ips_blocked
+syn_flood,off,10,100.0,2.6,2.3,2.4,2.3,436,0.0,,,0
+syn_flood,monitor,10,100.0,2.6,2.3,2.4,2.3,436,100.0,1.0,,0
+syn_flood,protect,10,100.0,100.0,100.0,100.0,100.0,25,100.0,1.0,1.0,0
+http_flood,off,10,100.0,25.3,24.4,23.8,24.9,274,0.0,,,0
+http_flood,monitor,10,100.0,25.3,24.4,23.8,24.9,274,100.0,2.0,,0
+http_flood,protect,10,100.0,94.3,96.0,96.1,95.9,31,100.0,2.0,2.0,0
+slowloris,off,10,100.0,3.5,0.0,0.0,0.0,,0.0,,,0
+slowloris,monitor,10,100.0,3.5,0.0,0.0,0.0,,100.0,2.0,,0
+slowloris,protect,10,100.0,100.0,100.0,100.0,100.0,25,100.0,4.0,4.0,0
+http_distributed,off,10,100.0,32.9,32.3,33.1,31.5,274,0.0,,,0
+http_distributed,monitor,10,100.0,32.9,32.3,33.1,31.5,274,100.0,1.3,,0
+http_distributed,protect,10,100.0,91.0,93.8,93.8,93.8,183,100.0,1.3,2.0,0
